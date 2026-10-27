@@ -16,7 +16,7 @@ const EnvSchema = z
     APP_TIMEZONE: z.string().default('Europe/Skopje'),
 
     GEMINI_API_KEY: optional,
-    GEMINI_MODEL: z.string().default('gemini-2.5-flash-lite'),
+    GEMINI_MODEL: z.string().default('gemini-flash-lite-latest'),
 
     GOOGLE_CLIENT_ID: optional,
     GOOGLE_CLIENT_SECRET: optional,
