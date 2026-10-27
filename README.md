@@ -56,8 +56,9 @@ Optional: add `GEMINI_API_KEY` and the `GOOGLE_*` keys to `apps/api/.env`, then 
 
 ## What to improve
 
-1. Login for the instructor page
-2. Confirmation emails with a cancel link
-3. Add bookings to Google Calendar
-4. Automated tests
-5. Paid hosting (no sleeping, no database expiry)
+1. **Confirmation emails with a cancel link.** Clients get an email after booking and can cancel or reschedule in one click.
+2. **Meet link in both calendars.** Every booking lands in the instructor's and client's Google Calendar with a Meet link.
+3. **Hold while booking.** The slot is reserved for 5 minutes while the client fills in the form.
+4. **Chat to edit availability.** "Move Fridays to 3pm" or "cancel next Tuesday", no forms.
+5. **AI-suggested week.** Gemini proposes slots from the instructor's free time; approve with one click.
+6. **Session prep from AI.** Before each session, the instructor gets a short brief on what the client wants to work on.
