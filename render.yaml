@@ -1,0 +1,44 @@
+# Everything on Render, from one Blueprint: New → Blueprint → pick this repo.
+# One web service runs the API and serves the React app; one Postgres database stores the data.
+services:
+  - type: web
+    name: teamlift-office-hours
+    runtime: node
+    plan: free
+    region: frankfurt
+    buildCommand: npm ci --include=dev && npm run build
+    # Migrations and the (re-runnable) seed run at start, when the database is reachable.
+    startCommand: >-
+      npm run db:migrate:prod -w @teamlift/api &&
+      npm run db:seed:prod -w @teamlift/api &&
+      npm run start -w @teamlift/api
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: teamlift-db
+          property: connectionString
+      - key: APP_TIMEZONE
+        value: Europe/Skopje
+      # Optional: fill in later under Environment, then redeploy.
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-2.5-flash-lite
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+      - key: GOOGLE_REDIRECT_URI
+        sync: false
+      - key: TOKEN_ENCRYPTION_KEY
+        generateValue: true # random secret, so Google tokens are encrypted from day one
+
+databases:
+  - name: teamlift-db
+    plan: free
+    region: frankfurt
+    databaseName: teamlift
+    user: teamlift

@@ -1,0 +1,83 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Square corners everywhere. Only `rounded-full` (the booking calendar's day circles,
+     status dots) stays round. */
+  --radius-xs: 0;
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-xl: 0;
+  --radius-2xl: 0;
+  --radius-3xl: 0;
+  --radius-4xl: 0;
+
+  --color-page: #f6f7f9;
+  --color-surface: #ffffff;
+  --color-ink: #1c1f2b;
+  --color-muted: #6f7487;
+  --color-faint: #a4a9b8;
+  --color-line: #e4e6ec;
+  --color-cell: #f4f5f8;
+
+  --color-brand: #2f45c6;
+  --color-brand-hover: #2638a8;
+  --color-brand-soft: #e8ebfa;
+  --color-brand-tint: #f3f4fc;
+
+  --color-ok: #2e8b57;
+  --color-ok-soft: #e6f4ec;
+  --color-warn: #d9741f;
+  --color-warn-soft: #fdf0e4;
+  --color-danger: #c2413a;
+  --color-danger-soft: #fbebea;
+
+  /* Google Calendar's default event colour ("Peacock"), for events that come from Google. */
+  --color-gcal: #039be5;
+  --color-gcal-soft: #e1f3fc;
+  --color-gcal-ink: #01579b;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  background: var(--color-page);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+}
+
+dialog::backdrop {
+  background: rgb(28 31 43 / 0.4);
+}
+
+dialog[open] {
+  animation: dialog-in 140ms ease-out;
+}
+
+@keyframes dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
